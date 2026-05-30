@@ -325,7 +325,7 @@ function SpeakersGrid() {
               transition={{ duration: 0.8, delay: i * 0.15 }}
               className={`space-y-4 ${i % 2 === 1 ? "md:translate-y-8" : ""}`}
             >
-              <div className="aspect-square relative overflow-hidden ring-1" style={{ ringColor: `${speaker.color}33` }}>
+              <div className="aspect-square relative overflow-hidden border" style={{ borderColor: `${speaker.color}33` }}>
                 <img
                   src={speaker.img}
                   alt={speaker.name}
