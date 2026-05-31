@@ -60,26 +60,38 @@ export default function CyberCursor() {
 
   return (
     <>
-      {/* Reactive background aura that follows the cursor */}
+      {/* Reactive neural hex grid background that shifts with cursor */}
       <div
         aria-hidden
         className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
         style={{
-          background:
-            "radial-gradient(600px circle at var(--mx,50%) var(--my,50%), oklch(0.72 0.32 330 / 0.18), transparent 45%), radial-gradient(900px circle at var(--mx,50%) var(--my,50%), oklch(0.91 0.15 195 / 0.10), transparent 60%)",
+          backgroundImage: `
+            radial-gradient(420px circle at var(--mx,50%) var(--my,50%), oklch(0.85 0.18 155 / 0.18), transparent 55%),
+            radial-gradient(680px circle at var(--mx,50%) var(--my,50%), oklch(0.75 0.22 290 / 0.10), transparent 65%),
+            url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='64' viewBox='0 0 56 64'><polygon points='28,2 54,17 54,47 28,62 2,47 2,17' fill='none' stroke='%234ade80' stroke-width='0.6' opacity='0.35'/></svg>")
+          `,
+          backgroundSize: "auto, auto, 56px 64px",
+          backgroundPosition: "0 0, 0 0, calc(var(--mx,50%) * 0.05) calc(var(--my,50%) * 0.05)",
+          maskImage:
+            "radial-gradient(520px circle at var(--mx,50%) var(--my,50%), black 0%, black 30%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(520px circle at var(--mx,50%) var(--my,50%), black 0%, black 30%, transparent 75%)",
         }}
       />
 
-      {/* Soft aura blob */}
+      {/* Soft aura blob (hex glow) */}
       <div
         ref={auraRef}
         aria-hidden
-        className={`fixed top-0 left-0 pointer-events-none z-[60] w-64 h-64 rounded-full blur-3xl mix-blend-screen transition-opacity duration-300 ${baseHide}`}
+        className={`fixed top-0 left-0 pointer-events-none z-[60] w-72 h-72 blur-2xl mix-blend-screen transition-opacity duration-300 ${baseHide}`}
         style={{
           background:
-            "radial-gradient(circle, oklch(0.72 0.32 330 / 0.35), transparent 70%)",
+            "radial-gradient(circle, oklch(0.85 0.18 155 / 0.28), oklch(0.75 0.22 290 / 0.18) 50%, transparent 75%)",
+          clipPath:
+            "polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)",
         }}
       />
+
 
       {/* Outer crosshair ring */}
       <div
