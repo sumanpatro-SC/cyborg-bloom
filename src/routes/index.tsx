@@ -69,18 +69,73 @@ function ScanlineOverlay() {
 
 function EnergyCore() {
   return (
-    <div className="relative flex items-center justify-center">
-      <div className="absolute w-48 h-48 rounded-full bg-[oklch(0.72_0.32_330)] opacity-20 animate-pulse-glow blur-xl" />
-      <div className="absolute w-32 h-32 rounded-full bg-[oklch(0.91_0.15_195)] opacity-30 animate-pulse blur-lg" />
-      <div className="relative z-10 w-16 h-16 rounded-full bg-[oklch(0.72_0.32_330)] shadow-[0_0_40px_oklch(0.72_0.32_330)] animate-pulse" />
-      {[...Array(3)].map((_, i) => (
+    <div className="relative flex items-center justify-center w-[420px] h-[420px]">
+      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,oklch(0.72_0.32_330/0.25),transparent_60%)] blur-2xl animate-pulse-glow" />
+      <svg viewBox="-100 -100 200 200" className="absolute inset-0 w-full h-full">
+        <defs>
+          <linearGradient id="hexStroke" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="oklch(0.91 0.15 195)" />
+            <stop offset="100%" stopColor="oklch(0.72 0.32 330)" />
+          </linearGradient>
+        </defs>
+        {[90, 75, 60].map((r, i) => (
+          <polygon
+            key={i}
+            points={Array.from({ length: 6 }, (_, k) => {
+              const a = (Math.PI / 3) * k - Math.PI / 2;
+              return `${(Math.cos(a) * r).toFixed(2)},${(Math.sin(a) * r).toFixed(2)}`;
+            }).join(" ")}
+            fill="none"
+            stroke="url(#hexStroke)"
+            strokeWidth={i === 0 ? 0.6 : 0.9}
+            strokeDasharray={i === 1 ? "4 6" : i === 2 ? "2 3" : "none"}
+            opacity={0.7}
+            style={{
+              transformOrigin: "center",
+              animation: `spin ${12 + i * 6}s linear infinite ${i % 2 ? "reverse" : ""}`,
+            }}
+          />
+        ))}
+        {Array.from({ length: 24 }).map((_, i) => {
+          const a = (Math.PI / 12) * i;
+          const x1 = Math.cos(a) * 95;
+          const y1 = Math.sin(a) * 95;
+          const x2 = Math.cos(a) * (i % 3 === 0 ? 86 : 91);
+          const y2 = Math.sin(a) * (i % 3 === 0 ? 86 : 91);
+          return (
+            <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+              stroke="oklch(0.91 0.15 195)" strokeWidth={0.6}
+              opacity={i % 3 === 0 ? 0.9 : 0.4} />
+          );
+        })}
+        <line x1="-100" y1="0" x2="-50" y2="0" stroke="oklch(0.72 0.32 330)" strokeWidth="0.4" opacity="0.5" />
+        <line x1="50" y1="0" x2="100" y2="0" stroke="oklch(0.72 0.32 330)" strokeWidth="0.4" opacity="0.5" />
+        <line x1="0" y1="-100" x2="0" y2="-50" stroke="oklch(0.72 0.32 330)" strokeWidth="0.4" opacity="0.5" />
+        <line x1="0" y1="50" x2="0" y2="100" stroke="oklch(0.72 0.32 330)" strokeWidth="0.4" opacity="0.5" />
+        <polygon
+          points={Array.from({ length: 6 }, (_, k) => {
+            const a = (Math.PI / 3) * k - Math.PI / 2;
+            return `${(Math.cos(a) * 28).toFixed(2)},${(Math.sin(a) * 28).toFixed(2)}`;
+          }).join(" ")}
+          fill="oklch(0.72 0.32 330 / 0.25)"
+          stroke="oklch(0.91 0.15 195)"
+          strokeWidth="1"
+          style={{ filter: "drop-shadow(0 0 8px oklch(0.91 0.15 195))" }}
+        />
+        <circle cx="0" cy="0" r="10" fill="oklch(0.91 0.15 195)">
+          <animate attributeName="r" values="8;14;8" dur="2s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="0" cy="0" r="4" fill="white" />
+      </svg>
+      {[...Array(6)].map((_, i) => (
         <div
           key={i}
-          className="absolute rounded-full border border-[oklch(0.72_0.32_330/0.3)]"
+          className="absolute w-1 h-1 rounded-full bg-[oklch(0.91_0.15_195)]"
           style={{
-            width: `${120 + i * 60}px`,
-            height: `${120 + i * 60}px`,
-            animation: `spin ${10 + i * 5}s linear infinite ${i % 2 === 0 ? "" : "reverse"}`,
+            boxShadow: "0 0 8px oklch(0.91 0.15 195)",
+            transform: `rotate(${i * 60}deg) translateY(-130px)`,
+            animation: `pulse-glow ${1.5 + i * 0.2}s ease-in-out infinite`,
           }}
         />
       ))}
