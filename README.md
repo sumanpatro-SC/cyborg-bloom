@@ -6,8 +6,18 @@
 
 - React 19 front-end with modern routing via `@tanstack/react-router`
 - Interactive visuals and animated hero sections
+- Custom cyberpunk cursor and pointer effects for a unique mouse experience
+- Animated background effects like digital rain and particle fields
 - A polished component system using Radix UI primitives and Tailwind CSS
 - Fast local development with Vite
+
+## Features
+
+- Custom animated hero and event showcase sections
+- Unique mouse pointer icon and responsive cursor interactions
+- Cyberpunk-style digital rain, particle field, and futuristic UI accents
+- Event cards, stats, and branded Techfest landing page content
+- Full client-side routing with fallback support for page navigation
 
 ## Getting started
 
