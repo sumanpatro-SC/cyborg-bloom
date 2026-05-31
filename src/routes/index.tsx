@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { ArrowRight, Cpu, Network, Eye, Zap } from "lucide-react";
+import { ArrowRight, Cpu, Network, Eye, Zap, Calendar, Users, Trophy, Sparkles, Activity, ChevronRight } from "lucide-react";
 
 import DigitalRain from "@/components/DigitalRain";
 import ParticleField from "@/components/ParticleField";
