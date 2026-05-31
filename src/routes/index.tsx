@@ -202,7 +202,7 @@ function HeroSection() {
           className="inline-block px-3 py-1 border border-[oklch(0.91_0.15_195/0.3)] bg-[oklch(0.91_0.15_195/0.05)] mb-6"
         >
           <span className="font-[JetBrains_Mono] text-[10px] uppercase tracking-[0.3em] text-[oklch(0.91_0.15_195)]">
-            Neural Network Activated
+            Techfest 2025 // IIT Bombay
           </span>
         </motion.div>
 
@@ -216,12 +216,12 @@ function HeroSection() {
             hovered ? "animate-glitch" : ""
           }`}
         >
-          <span className="block">Neural</span>
+          <span className="block">Cyborg</span>
           <span
             className="block text-transparent"
             style={{ WebkitTextStroke: "1px oklch(0.98 0.005 255)" }}
           >
-            Bloom
+            Ascent
           </span>
         </motion.h1>
 
@@ -232,7 +232,7 @@ function HeroSection() {
           className="max-w-md mx-auto"
         >
           <p className="text-muted-foreground text-sm md:text-base leading-relaxed text-pretty font-light">
-            Witness the convergence of biological impulse and synthetic logic at Asia's largest technological festival.
+            Where humanity meets machine. Step into Asia's largest science &amp; technology festival — engineered for the next evolution of intelligence.
           </p>
         </motion.div>
       </div>
