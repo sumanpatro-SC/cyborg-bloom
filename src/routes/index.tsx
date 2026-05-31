@@ -5,6 +5,7 @@ import { ArrowRight, Cpu, Network, Eye, Zap } from "lucide-react";
 
 import DigitalRain from "@/components/DigitalRain";
 import ParticleField from "@/components/ParticleField";
+import CyberCursor from "@/components/CyberCursor";
 import cyborgHero from "@/assets/cyborg-hero.png";
 import eventSynapse from "@/assets/event-synapse.jpg";
 import eventCore from "@/assets/event-core.jpg";
@@ -441,7 +442,8 @@ function Footer() {
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-body selection:bg-primary selection:text-primary-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground font-body selection:bg-primary selection:text-primary-foreground overflow-x-hidden cursor-none">
+      <CyberCursor />
       <DigitalRain />
       <ParticleField />
       <ScanlineOverlay />
