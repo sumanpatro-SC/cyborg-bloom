@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { ArrowRight, Cpu, Network, Eye, Zap } from "lucide-react";
+import { ArrowRight, Cpu, Network, Eye, Zap, Calendar, Users, Trophy, Sparkles, Activity, ChevronRight } from "lucide-react";
 
 import DigitalRain from "@/components/DigitalRain";
 import ParticleField from "@/components/ParticleField";
@@ -495,6 +495,186 @@ function Footer() {
   );
 }
 
+function MarqueeBar() {
+  const items = [
+    "CYBORG ASCENT",
+    "TECHFEST 2025",
+    "IIT BOMBAY",
+    "NEURAL UPLINK",
+    "AI ⨯ HUMAN",
+    "ASIA'S LARGEST",
+    "// SYSTEM ONLINE",
+    "EVOLVE.ADAPT.OVERRIDE",
+  ];
+  const loop = [...items, ...items];
+  return (
+    <div className="relative border-y border-border bg-black/60 backdrop-blur-md py-4 overflow-hidden">
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+      <div className="flex gap-12 animate-marquee whitespace-nowrap font-[Anton] text-3xl uppercase tracking-tight">
+        {loop.map((t, i) => (
+          <span key={i} className="flex items-center gap-12">
+            <span className={i % 3 === 0 ? "text-[oklch(0.72_0.32_330)]" : i % 3 === 1 ? "text-foreground" : "text-[oklch(0.91_0.15_195)]"}>{t}</span>
+            <Sparkles className="w-5 h-5 text-[oklch(0.91_0.15_195)]" />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function StatsBar() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const stats = [
+    { value: "175K+", label: "Footfall", icon: <Users className="w-5 h-5" /> },
+    { value: "75+", label: "Countries", icon: <Network className="w-5 h-5" /> },
+    { value: "₹50L", label: "Prize Pool", icon: <Trophy className="w-5 h-5" /> },
+    { value: "300+", label: "Events", icon: <Activity className="w-5 h-5" /> },
+  ];
+  return (
+    <section ref={ref} className="px-6 py-16 border-b border-border bg-black/40 relative">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
+        {stats.map((s, i) => (
+          <motion.div
+            key={s.label}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            className="bg-background p-6 group hover:bg-[oklch(0.72_0.32_330/0.05)] transition-colors relative overflow-hidden"
+          >
+            <div className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-[oklch(0.72_0.32_330)] to-[oklch(0.91_0.15_195)] animate-ticker-bar" />
+            <div className="text-[oklch(0.91_0.15_195)] mb-3">{s.icon}</div>
+            <div className="font-[Anton] text-5xl text-foreground tracking-tighter mb-1">{s.value}</div>
+            <div className="font-[JetBrains_Mono] text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{s.label}</div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TimelineSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const phases = [
+    { time: "DAY_01", title: "Initialization", desc: "Opening ceremony, keynote uplinks, and the activation of the neural grid.", color: "oklch(0.72 0.32 330)" },
+    { time: "DAY_02", title: "Synthesis", desc: "Robotics combat, hackathons, and the live demonstration of bio-mechanical hybrids.", color: "oklch(0.91 0.15 195)" },
+    { time: "DAY_03", title: "Ascent", desc: "Finals, awards, and the closing transmission from the singularity.", color: "oklch(0.85 0.18 155)" },
+  ];
+  return (
+    <section ref={ref} className="px-6 py-24 relative">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="mb-16 flex justify-between items-end gap-4 flex-wrap"
+        >
+          <h2 className="font-[Anton] text-5xl md:text-6xl uppercase tracking-tighter text-foreground">
+            Timeline_<span className="text-[oklch(0.72_0.32_330)]">Protocol</span>
+          </h2>
+          <p className="font-[JetBrains_Mono] text-[10px] text-muted-foreground uppercase tracking-widest">
+            [ 72 hours of synthetic evolution ]
+          </p>
+        </motion.div>
+
+        <div className="relative">
+          <div className="absolute left-0 top-1/2 w-full h-px bg-gradient-to-r from-transparent via-[oklch(0.72_0.32_330/0.5)] to-transparent hidden md:block" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            {phases.map((p, i) => (
+              <motion.div
+                key={p.time}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.2 }}
+                className="relative group"
+              >
+                <div className="w-3 h-3 rounded-full mx-auto mb-6 ring-4 ring-background relative z-10" style={{ background: p.color, boxShadow: `0 0 20px ${p.color}` }} />
+                <div className="border border-border p-6 bg-card/40 backdrop-blur-sm group-hover:border-[oklch(0.72_0.32_330/0.5)] transition-colors">
+                  <div className="font-[JetBrains_Mono] text-[10px] uppercase tracking-[0.3em] mb-3" style={{ color: p.color }}>{p.time}</div>
+                  <h3 className="font-[Anton] text-3xl uppercase mb-3 text-foreground">{p.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                  <div className="mt-6 flex items-center gap-2 font-[JetBrains_Mono] text-[10px] uppercase tracking-widest text-[oklch(0.91_0.15_195)]">
+                    <span>Access protocol</span>
+                    <ChevronRight className="w-3 h-3" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SponsorMarquee() {
+  const sponsors = ["NEURALINK", "OMNI/CORP", "SYNAPSE_LABS", "QUANTUM.IO", "AXON.SYS", "VOID//ENGINE", "HEXNODE", "PRIMECORE", "AI-GENESIS", "BIONET"];
+  const loop = [...sponsors, ...sponsors];
+  return (
+    <section className="border-y border-border bg-black py-10 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-6 flex justify-between items-center">
+        <span className="font-[JetBrains_Mono] text-[10px] uppercase tracking-[0.3em] text-muted-foreground">// Powered_by_partners</span>
+        <span className="font-[JetBrains_Mono] text-[10px] uppercase tracking-[0.3em] text-[oklch(0.91_0.15_195)]">10+ Allied Networks</span>
+      </div>
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+        <div className="flex gap-16 animate-marquee-reverse whitespace-nowrap font-[JetBrains_Mono] text-lg text-muted-foreground">
+          {loop.map((s, i) => (
+            <span key={i} className="hover:text-foreground transition-colors flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-[oklch(0.72_0.32_330)] rounded-full" />
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CountdownBar() {
+  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 });
+  useEffect(() => {
+    const target = new Date("2025-12-12T00:00:00").getTime();
+    const tick = () => {
+      const diff = Math.max(0, target - Date.now());
+      setT({
+        d: Math.floor(diff / 86400000),
+        h: Math.floor((diff / 3600000) % 24),
+        m: Math.floor((diff / 60000) % 60),
+        s: Math.floor((diff / 1000) % 60),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+  const cells: [string, number][] = [["DAYS", t.d], ["HRS", t.h], ["MIN", t.m], ["SEC", t.s]];
+  return (
+    <section className="px-6 py-12 border-b border-border bg-gradient-to-b from-black to-background relative">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="flex items-center gap-3">
+          <Calendar className="w-5 h-5 text-[oklch(0.91_0.15_195)]" />
+          <div>
+            <div className="font-[Anton] text-2xl uppercase tracking-tighter text-foreground">System_Activation</div>
+            <div className="font-[JetBrains_Mono] text-[10px] uppercase tracking-[0.3em] text-muted-foreground">// Dec 12 — 14 // IIT Bombay</div>
+          </div>
+        </div>
+        <div className="flex gap-3">
+          {cells.map(([label, v]) => (
+            <div key={label} className="border border-[oklch(0.72_0.32_330/0.4)] bg-black/60 px-5 py-3 min-w-[80px] text-center backdrop-blur-sm">
+              <div className="font-[Anton] text-4xl text-foreground tabular-nums tracking-tight">{String(v).padStart(2, "0")}</div>
+              <div className="font-[JetBrains_Mono] text-[9px] uppercase tracking-[0.3em] text-[oklch(0.91_0.15_195)] mt-1">{label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground font-body selection:bg-primary selection:text-primary-foreground overflow-x-hidden cursor-none">
@@ -504,8 +684,13 @@ function Index() {
       <ScanlineOverlay />
       <CyberNav />
       <HeroSection />
+      <MarqueeBar />
+      <StatsBar />
       <EventHighlights />
+      <CountdownBar />
+      <TimelineSection />
       <SpeakersGrid />
+      <SponsorMarquee />
       <EnergyCoreSection />
       <Footer />
     </div>
