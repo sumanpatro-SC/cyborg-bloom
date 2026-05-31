@@ -18,9 +18,9 @@ import speaker4 from "@/assets/speaker-4.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Techfest 2025 | Cyborg Ascent — IIT Bombay" },
+      { title: "ca.techfest" },
       { name: "description", content: "Witness the convergence of biological impulse and synthetic logic at Asia's largest technology festival." },
-      { property: "og:title", content: "Techfest 2025 | Cyborg Ascent — IIT Bombay" },
+      { property: "og:title", content: "ca.techfest" },
       { property: "og:description", content: "Asia's largest technology festival. Where humanity meets machine." },
       { property: "og:type", content: "website" },
     ],
@@ -163,7 +163,7 @@ function CyberNav() {
     >
       <div className="font-[Anton] text-2xl tracking-tighter flex items-center gap-2 text-foreground">
         <div className="w-3 h-3 bg-[oklch(0.72_0.32_330)] rounded-full animate-pulse" />
-        TECHFEST.25
+        TECHFEST.26
       </div>
       <div className="hidden md:flex gap-8 font-[JetBrains_Mono] text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
         <a href="#nexus" className="hover:text-[oklch(0.91_0.15_195)] transition-colors">01. Nexus</a>
@@ -202,7 +202,7 @@ function HeroSection() {
           className="inline-block px-3 py-1 border border-[oklch(0.91_0.15_195/0.3)] bg-[oklch(0.91_0.15_195/0.05)] mb-6"
         >
           <span className="font-[JetBrains_Mono] text-[10px] uppercase tracking-[0.3em] text-[oklch(0.91_0.15_195)]">
-            Techfest 2025 // IIT Bombay
+            Techfest 2026 // IIT Bombay
           </span>
         </motion.div>
 
@@ -468,14 +468,23 @@ function EnergyCoreSection() {
 function Footer() {
   return (
     <footer className="px-6 py-12 border-t border-border bg-black">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
         <div className="font-[Anton] text-xl tracking-tighter text-foreground">
           IIT BOMBAY // TECHFEST
         </div>
-        <div className="flex gap-8 font-[JetBrains_Mono] text-[10px] text-muted-foreground uppercase tracking-widest">
+        <div className="flex flex-col gap-3 font-[JetBrains_Mono] text-[10px] text-muted-foreground uppercase tracking-widest">
           <span>EST. 1998</span>
           <span>PRIVACY_PROTOCOL</span>
           <span>NODE_MAP</span>
+        </div>
+        <div className="flex flex-col gap-3 text-[13px] md:text-[14px] text-muted-foreground">
+          <div className="font-[JetBrains_Mono] uppercase tracking-[0.3em] text-[12px] md:text-[13px] text-[oklch(0.72_0.32_330)]">Contact</div>
+          <div className="font-[JetBrains_Mono] text-[14px] md:text-[16px] uppercase text-foreground">P Suman Patro</div>
+          <div className="font-[JetBrains_Mono] text-[12px] md:text-[14px] leading-snug text-foreground">
+            <div>suman.04patro@gmail.com</div>
+            <div>sumanpatro2233@gmail.com</div>
+            <div>+91 78470 67218</div>
+          </div>
         </div>
         <div className="flex gap-4">
           {["X", "IG", "IN"].map((label) => (
